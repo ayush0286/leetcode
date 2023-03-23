@@ -1,5 +1,5 @@
-class Solution:
-    
+class Solution:        
+    # O(m) Time | O(n) Space, where m is length of connections
     def makeConnected(self, n: int, connections: List[List[int]]) -> int:
         # find out clusters
         # return clusters - 1 
@@ -34,7 +34,7 @@ class Solution:
             self.explore(visited, graph, nodes, neighbour)
         
         del visited[node]
-    # O(n) Time | O(n) Space
+        
     def getClusterCount(self, graph, nodes, n):
         clusterCount = 0
         for node in range(n):
