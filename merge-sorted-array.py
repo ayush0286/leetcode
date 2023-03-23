@@ -21,4 +21,3 @@ class Solution:
             for index in reversed(range(index2 + 1)):
                 nums1[mergeIdx] = nums2[index]
                 mergeIdx -= 1
-
