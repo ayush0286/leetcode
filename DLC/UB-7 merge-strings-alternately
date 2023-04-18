@@ -1,0 +1,23 @@
+# Leetcode https://leetcode.com/problems/merge-strings-alternately/
+# Notes N/A
+
+class Solution:
+    # O(n + m) Time | O(n + m) Space, where n and m are lengths of word1 and word2
+    def mergeAlternately(self, word1: str, word2: str) -> str:
+        mergedChars = []
+        idx1 = 0
+        idx2 = 0
+        while idx1 < len(word1) and idx2 < len(word2):
+            mergedChars.append(word1[idx1])
+            mergedChars.append(word2[idx2])
+            idx1 += 1
+            idx2 += 1
+        if idx1 == len(word1) and idx2 == len(word2):
+            return ''.join(mergedChars)
+        elif idx1 < len(word1):
+            mergedChars.extend(word1[idx1:])
+            return ''.join(mergedChars)
+        else: # idx2 < len(word2)
+            mergedChars.extend(word2[idx2:])
+            return ''.join(mergedChars)
+            
