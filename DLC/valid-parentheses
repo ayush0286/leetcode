@@ -1,0 +1,22 @@
+# Leetcode https://leetcode.com/problems/valid-parentheses/
+# Notes: keep track of open brackets using stack
+# JIRA: https://sde2.atlassian.net/browse/UB-9
+
+class Solution:
+    # O(n) Time | O(n) Space, where n is length of s
+    def isValid(self, s: str) -> bool:
+        openBrackets = ['(', '[', '{']
+        closeBrackets = [')', ']', '}']
+        bracketStack = []
+        for char in s:
+            if char in openBrackets:
+                bracketStack.append(char)
+            else:
+                expectedOpenBracket = openBrackets[closeBrackets.index(char)]
+                if len(bracketStack) > 0:
+                    actualOpenBracket = bracketStack.pop()
+                    if actualOpenBracket != expectedOpenBracket:
+                        return False
+                else:
+                    return False
+        return len(bracketStack) == 0
