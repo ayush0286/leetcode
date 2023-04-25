@@ -1,0 +1,34 @@
+# Leetcode https://leetcode.com/problems/smallest-number-in-infinite-set/
+# Notes: an index to pop out smallest so far, when new number added add to a minHeap, pop from heap while len(heap) != 0, don't add to heap if number greater than index
+# JIRA: https://sde2.atlassian.net/browse/UB-57
+
+class SmallestInfiniteSet:
+
+    def __init__(self):
+        self.index = 1
+        self.minHeap = []
+        self.heapValues = {}
+
+
+    # O(1) Time | O(1) Space
+    def popSmallest(self) -> int:
+        if len(self.minHeap) != 0:
+            smallest = heapq.heappop(self.minHeap)
+            del self.heapValues[smallest]
+            return smallest
+        else:
+            self.index += 1 # new smallest
+            return self.index - 1 # curr smallest
+
+    # O(logn) Time | O(1) Space, where n is length of heapValues
+    def addBack(self, num: int) -> None:
+        if num < self.index and num not in self.heapValues:
+            heapq.heappush(self.minHeap, num)
+            self.heapValues[num] = True
+
+
+
+# Your SmallestInfiniteSet object will be instantiated and called as such:
+# obj = SmallestInfiniteSet()
+# param_1 = obj.popSmallest()
+# obj.addBack(num)
